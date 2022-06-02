@@ -6,13 +6,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import co.app.studyteam.databinding.FragmentGroupsBinding
-import co.app.studyteam.databinding.FragmentMyGroupsBinding
 
 class GroupsFragment : Fragment() {
 
     private var _binding: FragmentGroupsBinding? = null
     private val binding get() = _binding!!
+
+    private val adapter = GroupAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -20,6 +22,13 @@ class GroupsFragment : Fragment() {
     ): View? {
         _binding = FragmentGroupsBinding.inflate(inflater, container, false)
         val view = binding.root
+
+        //recrear estado
+        var groupRecycler = binding.groupRecycler
+        groupRecycler.setHasFixedSize(true)
+        groupRecycler.layoutManager = LinearLayoutManager(activity)
+        groupRecycler.adapter = adapter
+
         return view
     }
 

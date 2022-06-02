@@ -10,4 +10,5 @@ class GroupView(itemView: View) : RecyclerView.ViewHolder(itemView) {
     var date: TextView =  itemView.findViewById(R.id.groupDate)
     var hours: TextView = itemView.findViewById(R.id.groupHours)
 
+
 }

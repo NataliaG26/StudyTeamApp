@@ -25,7 +25,7 @@ class MenuMain : AppCompatActivity() {
         profileFragment = ProfileFragment.newInstance()
         myGroupsFragment = MyGroupsFragment.newInstance()
 
-        binding.btnNav.setOnItemReselectedListener { menuapp ->
+        binding.btnNav.setOnItemSelectedListener { menuapp ->
             if (menuapp.itemId == R.id.groupItem) {
                 showFragment(groupsFragment)
             } else if (menuapp.itemId == R.id.profileItem) {

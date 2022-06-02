@@ -1,6 +1,7 @@
 package co.app.studyteam
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -20,6 +21,11 @@ class MyGroupsFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentMyGroupsBinding.inflate(inflater, container, false)
         val view = binding.root
+
+        binding.btnAddGroup.setOnClickListener{
+            val intent = Intent(getActivity(), CreateGroupActivity::class.java)
+            startActivity(intent)
+        }
 
         return view
     }
