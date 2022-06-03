@@ -24,10 +24,12 @@ class ProfileFragment : Fragment() {
 
         var username = (activity as? MenuMain)?.getUserName()
         var name = (activity as? MenuMain)?.getName()
+        var email = (activity as? MenuMain)?.getEmail()
         Toast.makeText(this.context,"Hola $username bienvenido a tu perfil", Toast.LENGTH_LONG).show()
 
         binding.txtNme.text = name
         binding.txtUsername.text = username
+        binding.txtEmail.text = email
 
         binding.btnLogout.setOnClickListener {
             val intent = Intent(this.context, MainActivity::class.java)

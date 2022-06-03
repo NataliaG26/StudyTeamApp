@@ -17,6 +17,7 @@ class MenuMain : AppCompatActivity() {
     private lateinit var profileFragment: ProfileFragment
     private var username:String? = null
     private var name:String? = null
+    private var email:String? = null
     private lateinit var myGroupsFragment: MyGroupsFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,6 +30,7 @@ class MenuMain : AppCompatActivity() {
         profileFragment = ProfileFragment.newInstance()
         username = intent.extras?.getString("username")
         name = intent.extras?.getString("name")
+        email = intent.extras?.getString("email")
         Toast.makeText(this,"Hola $username", Toast.LENGTH_LONG).show()
         myGroupsFragment = MyGroupsFragment.newInstance()
 
@@ -53,6 +55,12 @@ class MenuMain : AppCompatActivity() {
     fun getName(): String? {
 
         return name
+
+    }
+
+    fun getEmail(): String? {
+
+        return email
 
     }
     fun showFragment(fragment: Fragment){
