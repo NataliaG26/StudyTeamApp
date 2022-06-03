@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StudyTeam">
         <activity
+            android:name=".UserCreateActivity"
+            android:exported="false" />
+        <activity
             android:name=".CreateGroupActivity"
             android:exported="false" />
         <activity

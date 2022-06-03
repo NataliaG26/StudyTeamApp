@@ -41,6 +41,11 @@ class MainActivity : AppCompatActivity() {
 
         }
 
+        binding.btnUserCreate.setOnClickListener {
+            val intent = Intent(this, UserCreateActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 
     interface UserListener{
