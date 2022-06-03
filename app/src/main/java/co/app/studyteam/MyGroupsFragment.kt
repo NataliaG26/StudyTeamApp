@@ -1,20 +1,22 @@
 package co.app.studyteam
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import co.app.studyteam.databinding.FragmentMyGroupsBinding
+import com.google.firebase.firestore.Query
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class MyGroupsFragment : Fragment() {
 
     private var _binding: FragmentMyGroupsBinding? = null
     private val binding get() = _binding!!
+    private val adapter = MyGroupAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,6 +25,15 @@ class MyGroupsFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentMyGroupsBinding.inflate(inflater, container, false)
         val view = binding.root
+
+        var username = (activity as? MenuMain)?.getUserName()
+
+        var groupRecycler = binding.myGroupsRecycler
+        groupRecycler.setHasFixedSize(true)
+        groupRecycler.layoutManager = LinearLayoutManager(activity)
+        groupRecycler.adapter = adapter
+
+        getGroup(username)
 
 
         binding.btnAddGroup.setOnClickListener{
@@ -39,6 +50,18 @@ class MyGroupsFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    fun getGroup(username: String?){
+        Firebase.firestore.collection("users").document(username.toString()).collection("group").orderBy("date", Query.Direction.DESCENDING).get().addOnCompleteListener { task ->
+            adapter.deleteAllGroup()
+            for (document in task.result!!) {
+                val group = document.toObject(Group::class.java)
+                adapter.addGroup(group)
+                adapter.notifyDataSetChanged()
+            }
+        }
+
     }
 
 

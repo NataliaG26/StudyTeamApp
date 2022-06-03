@@ -34,6 +34,7 @@ class CreateGroupActivity : AppCompatActivity() {
 
             val group = Group(UUID.randomUUID().toString(), date, startHour, finishHour, subject)
             Firebase.firestore.collection("users").document(username.toString()).collection("group").document(group.id).set(group)
+            Firebase.firestore.collection("groups").document(group.id).set(group)
             super.finish();
         }
 

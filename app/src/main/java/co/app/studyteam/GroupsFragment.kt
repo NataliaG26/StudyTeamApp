@@ -43,7 +43,7 @@ class GroupsFragment : Fragment() {
     }
 
     fun getGroup(username: String?){
-            Firebase.firestore.collection("users").document(username.toString()).collection("group").orderBy("date", Query.Direction.DESCENDING).get().addOnCompleteListener { task ->
+            Firebase.firestore.collection("groups").orderBy("date", Query.Direction.DESCENDING).get().addOnCompleteListener { task ->
                 adapter.deleteAllGroup()
                 for (document in task.result!!) {
                     val group = document.toObject(Group::class.java)
