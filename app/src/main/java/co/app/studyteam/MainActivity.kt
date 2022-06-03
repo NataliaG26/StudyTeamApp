@@ -21,23 +21,50 @@ class MainActivity : AppCompatActivity() {
         setContentView(view)
 
         binding.btnLogin.setOnClickListener{
-            var username = binding.textUser.text.toString()
-            var password = binding.textPassword.text.toString()
-            val user = User(UUID.randomUUID().toString(), username, password)
 
             //Toast.makeText(this, "${username}:${password}", Toast.LENGTH_LONG).show()
             //Toast.makeText(this, "El usuario y contraseña son incorrectos", Toast.LENGTH_LONG).show()
+            //Toast.makeText(this,"Hola ${searchUser().username}", Toast.LENGTH_LONG).show()
 
-            Firebase.firestore.collection("users").document(user.username).set(user)
+            var user = binding.textUser.text.toString()
+            var password = binding.textPassword.text.toString()
 
-            userListener?.userName(username)
 
-            val intent = Intent(this, MenuMain::class.java).apply {
-                putExtra("username", username)
+            lifecycleScope.launch(Dispatchers.IO) {
+
+                val query = Firebase.firestore.collection("users").document(user)
+                query.get().addOnSuccessListener {
+
+
+                    var userSearch : User? = it.toObject(User::class.java)
+
+                    if (userSearch != null){
+
+                        if (user == userSearch.username && password == userSearch.password){
+
+                            val intent = Intent(this@MainActivity, MenuMain::class.java).apply {
+                                putExtra("username", user)
+                            }
+
+                            startActivity(intent)
+                            finish()
+
+                        }else{
+
+                            Toast.makeText(this@MainActivity,"Usuario incorrecto", Toast.LENGTH_LONG).show()
+
+                        }
+
+                    }else{
+
+                        Toast.makeText(this@MainActivity,"Usuario incorrecto", Toast.LENGTH_LONG).show()
+
+                    }
+
+
+                }
+
             }
-
-            startActivity(intent)
-            finish()
 
         }
 
@@ -47,7 +74,6 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
-
     interface UserListener{
         fun userName(username:String)
     }
