@@ -39,8 +39,8 @@ class GroupAdapter: RecyclerView.Adapter<GroupView>() {
     fun convertLongToTime(time: Long, format:String): String {
         val date = Date(time)
         //"yyyy.MM.dd HH:mm"
-        val format = SimpleDateFormat(format)
-        return format.format(date)
+        val stringformat = SimpleDateFormat(format)
+        return stringformat.format(date)
     }
 
     override fun getItemCount(): Int {

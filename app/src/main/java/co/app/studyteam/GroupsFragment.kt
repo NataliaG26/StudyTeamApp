@@ -48,7 +48,7 @@ class GroupsFragment : Fragment() {
                 for (document in task.result!!) {
                     val group = document.toObject(Group::class.java)
                     adapter.addGroup(group)
-                    adapter.notifyDataSetChanged()
+                    //adapter.notifyDataSetChanged()
                 }
             }
 

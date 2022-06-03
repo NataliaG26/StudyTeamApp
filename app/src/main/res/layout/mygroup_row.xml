@@ -3,18 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/subjectText"
-        android:layout_width="164dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="30dp"
-        android:text="TextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="40dp"
+        android:text="Subject"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/dateText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -22,29 +23,43 @@
         android:id="@+id/dateText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="TextView"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
+        android:text="26/11/2022"
         android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/subjectText"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/subjectText" />
 
     <TextView
         android:id="@+id/startHourText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
         android:text="TextView"
-        app:layout_constraintStart_toStartOf="@+id/subjectText"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dateText" />
 
     <TextView
         android:id="@+id/finishHourText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="40dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textView16"
+        app:layout_constraintTop_toBottomOf="@+id/dateText" />
+
+    <TextView
+        android:id="@+id/textView16"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="3dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="@+id/startHourText"
-        app:layout_constraintEnd_toEndOf="@+id/subjectText"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        android:text="-"
         app:layout_constraintStart_toEndOf="@+id/startHourText"
-        app:layout_constraintTop_toTopOf="@+id/startHourText" />
+        app:layout_constraintTop_toBottomOf="@+id/dateText" />
 </androidx.constraintlayout.widget.ConstraintLayout>
