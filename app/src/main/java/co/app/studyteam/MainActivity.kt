@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
             var password = binding.textPassword.text.toString()
 
 
-            lifecycleScope.launch(Dispatchers.IO) {
+           // lifecycleScope.launch(Dispatchers.IO) {
 
                 val query = Firebase.firestore.collection("users").document(user)
                 query.get().addOnSuccessListener {
@@ -44,6 +44,7 @@ class MainActivity : AppCompatActivity() {
 
                             val intent = Intent(this@MainActivity, MenuMain::class.java).apply {
                                 putExtra("username", user)
+                                putExtra("name", userSearch.name)
                             }
 
                             startActivity(intent)
@@ -64,7 +65,7 @@ class MainActivity : AppCompatActivity() {
 
                 }
 
-            }
+            //}
 
         }
 
