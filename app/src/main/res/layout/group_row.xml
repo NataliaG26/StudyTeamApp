@@ -6,6 +6,18 @@
     android:layout_height="wrap_content">
 
     <TextView
+        android:id="@+id/finishHour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:text="14:00 - 17:00"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button"
+        app:layout_constraintTop_toBottomOf="@+id/groupSubject"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
         android:id="@+id/groupSubject"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -24,7 +36,7 @@
         android:layout_height="46dp"
         android:layout_marginEnd="40dp"
         android:text="Unirse"
-        app:layout_constraintBottom_toBottomOf="@+id/groupHours"
+        app:layout_constraintBottom_toBottomOf="@+id/startHour"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/groupSubject" />
 
@@ -32,22 +44,24 @@
         android:id="@+id/groupDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
         android:text="26/11/2022"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/groupSubject" />
+        app:layout_constraintTop_toBottomOf="@+id/groupSubject"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/groupHours"
+        android:id="@+id/startHour"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="30dp"
+        android:layout_marginEnd="88dp"
         android:text="14:00 - 17:00"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/button"
-        app:layout_constraintTop_toBottomOf="@+id/groupSubject" />
+        app:layout_constraintTop_toBottomOf="@+id/groupSubject"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

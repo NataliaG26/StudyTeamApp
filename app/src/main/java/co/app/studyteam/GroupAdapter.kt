@@ -11,6 +11,12 @@ class GroupAdapter: RecyclerView.Adapter<GroupView>() {
 
     private val groups = ArrayList<Group>()
 
+    fun addGroup(group: Group){
+        groups.add(group)
+        notifyItemInserted(groups.size-1)
+
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GroupView {
         val inflater = LayoutInflater.from(parent.context)
         val view = inflater.inflate(R.layout.group_row, parent, false)
@@ -19,12 +25,15 @@ class GroupAdapter: RecyclerView.Adapter<GroupView>() {
     }
 
     override fun onBindViewHolder(holder: GroupView, position: Int) {
-        val group =groups[position]
-        holder.subject.text = group.subject
-        holder.date.text = convertLongToTime(group.date, "dd.MM.YYYY")
+        val chart =groups[position]
+        holder.group = chart
+        holder.initializer(chart)
         // verificar vista -------------------------------------------------------
-        holder.hours.text = (convertLongToTime(group.startHour,"HH:mm") + " - " + convertLongToTime(group.finishHour,"HH:mm"))
 
+    }
+
+    fun deleteAllGroup(){
+        groups.clear()
     }
 
     fun convertLongToTime(time: Long, format:String): String {
@@ -35,6 +44,6 @@ class GroupAdapter: RecyclerView.Adapter<GroupView>() {
     }
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return groups.size
     }
 }
