@@ -27,7 +27,7 @@ class MenuMain : AppCompatActivity() {
         groupsFragment = GroupsFragment.newInstance()
         profileFragment = ProfileFragment.newInstance()
         username = intent.extras?.getString("username")
-        //Toast.makeText(this,"Hola $username", Toast.LENGTH_LONG).show()
+        Toast.makeText(this,"Hola $username", Toast.LENGTH_LONG).show()
         myGroupsFragment = MyGroupsFragment.newInstance()
 
         binding.btnNav.setOnItemSelectedListener { menuapp ->

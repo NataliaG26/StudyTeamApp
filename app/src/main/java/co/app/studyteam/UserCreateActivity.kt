@@ -1,5 +1,6 @@
 package co.app.studyteam
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import co.app.studyteam.databinding.ActivityUserCreateBinding
@@ -23,8 +24,16 @@ class UserCreateActivity : AppCompatActivity() {
             var email = binding.eTxtEmail.text.toString()
             var password =  binding.eTxtPassword.text.toString()
 
-            val user = User(UUID.randomUUID().toString(), email, username, password)
-            // Firebase
+            val user = User(UUID.randomUUID().toString(),name, email, username, password)
+            Firebase.firestore.collection("users").document(user.username).set(user)
+
+            val intent = Intent(this, MainActivity::class.java).apply {
+                putExtra("username", username)
+                putExtra("password", password)
+            }
+
+            startActivity(intent)
+            finish()
             super.finish();
         }
     }
