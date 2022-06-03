@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import co.app.studyteam.databinding.FragmentGroupsBinding
 import co.app.studyteam.databinding.FragmentProfileBinding
 
@@ -23,6 +24,7 @@ class ProfileFragment : Fragment() {
 
         var username = (activity as? MenuMain)?.getUserName()
         var name = (activity as? MenuMain)?.getName()
+        Toast.makeText(this.context,"Hola $username bienvenido a tu perfil", Toast.LENGTH_LONG).show()
 
         binding.txtNme.text = name
         binding.txtUsername.text = username
