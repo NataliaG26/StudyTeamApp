@@ -17,8 +17,6 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     var userListener: UserListener? = null
-    private var username:String? = null
-    private var password:String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,27 +24,50 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        Toast.makeText(this,"Hola $username", Toast.LENGTH_LONG).show()
-
         binding.btnLogin.setOnClickListener{
 
             //Toast.makeText(this, "${username}:${password}", Toast.LENGTH_LONG).show()
             //Toast.makeText(this, "El usuario y contraseña son incorrectos", Toast.LENGTH_LONG).show()
 
-            Toast.makeText(this,"Hola ${searchUser().username}", Toast.LENGTH_LONG).show()
+            //Toast.makeText(this,"Hola ${searchUser().username}", Toast.LENGTH_LONG).show()
 
-            if (username.toString() == searchUser().username && password.toString() == searchUser().password){
+            var user = binding.textUser.text.toString()
+            var password = binding.textPassword.text.toString()
 
-                val intent = Intent(this, MenuMain::class.java).apply {
-                    putExtra("username", username)
+
+            lifecycleScope.launch(Dispatchers.IO) {
+
+                val query = Firebase.firestore.collection("users").document(user)
+                query.get().addOnSuccessListener {
+
+
+                    var userSearch : User? = it.toObject(User::class.java)
+
+                    if (userSearch != null){
+
+                        if (user == userSearch.username && password == userSearch.password){
+
+                            val intent = Intent(this@MainActivity, MenuMain::class.java).apply {
+                                putExtra("username", user)
+                            }
+
+                            startActivity(intent)
+                            finish()
+
+                        }else{
+
+                            Toast.makeText(this@MainActivity,"Usuario incorrecto", Toast.LENGTH_LONG).show()
+
+                        }
+
+                    }else{
+
+                        Toast.makeText(this@MainActivity,"Usuario incorrecto", Toast.LENGTH_LONG).show()
+
+                    }
+
+
                 }
-
-                startActivity(intent)
-                finish()
-
-            }else{
-
-                Toast.makeText(this,"Usuario incorrecto", Toast.LENGTH_LONG).show()
 
             }
 
@@ -56,29 +77,6 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, UserCreateActivity::class.java)
             startActivity(intent)
         }
-
-    }
-
-    fun searchUser(): User {
-        username = binding.textUser.text.toString()
-        password = binding.textPassword.text.toString()
-        lateinit var userSearch : User
-
-        lifecycleScope.launch(Dispatchers.IO) {
-
-            val query = Firebase.firestore.collection("users").document(username.toString())
-            query.get().addOnSuccessListener {
-
-
-                 userSearch = it.toObject(User::class.java)!!
-
-
-                Log.e("zzzzzzzzzz", userSearch!!.email.toString())
-            }
-
-        }
-
-        return userSearch
 
     }
 
