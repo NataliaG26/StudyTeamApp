@@ -21,6 +21,12 @@ class ProfileFragment : Fragment() {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         val vista = binding.root
 
+        var username = (activity as? MenuMain)?.getUserName()
+        var name = (activity as? MenuMain)?.getName()
+
+        binding.txtNme.text = name
+        binding.txtUsername.text = username
+
         binding.btnLogout.setOnClickListener {
             val intent = Intent(this.context, MainActivity::class.java)
 
